@@ -1,4 +1,4 @@
-package com.tmhp.platform.web;
+package com.tmhp.platform.web.test;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,4 +17,5 @@ public class HelloController {
     public String index() {
         return "hello";
     }
+
 }

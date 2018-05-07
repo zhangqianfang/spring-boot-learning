@@ -97,35 +97,35 @@ public class ReflectUtils {
         }
     }
 
-    /**
-     * 测试主函数
-     * @param args
-     */
-    @SuppressWarnings("rawtypes")
-    public static void main(String[] args) {
-        try {
-            Class cls = Class.forName("com.flf.entity.User");
-            Field field;
-            try {
-                // 得到一个类的实例
-                Object user = cls.newInstance();
-                // 调用根据字段名得到字段的方法
-                field = ReflectUtils.getFieldByFieldName(user, "loginname");
-                System.out.println(field.getName());
-
-                // 根据字段名给字段赋值
-                ReflectUtils.setValueByFieldName(user, "loginname", "admin");
-
-                // 根据字段名获取到字段值
-                Object nameValue = ReflectUtils.getValueByFieldName(user, "loginname");
-                System.out.println(nameValue);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }
+    //    /**
+    //     * 测试主函数
+    //     * @param args
+    //     */
+    //    @SuppressWarnings("rawtypes")
+    //    public static void main(String[] args) {
+    //        try {
+    //            Class cls = Class.forName("com.flf.entity.User");
+    //            Field field;
+    //            try {
+    //                // 得到一个类的实例
+    //                Object user = cls.newInstance();
+    //                // 调用根据字段名得到字段的方法
+    //                field = ReflectUtils.getFieldByFieldName(user, "loginname");
+    //                System.out.println(field.getName());
+    //
+    //                // 根据字段名给字段赋值
+    //                ReflectUtils.setValueByFieldName(user, "loginname", "admin");
+    //
+    //                // 根据字段名获取到字段值
+    //                Object nameValue = ReflectUtils.getValueByFieldName(user, "loginname");
+    //                System.out.println(nameValue);
+    //
+    //            } catch (Exception e) {
+    //                e.printStackTrace();
+    //            }
+    //        } catch (ClassNotFoundException e) {
+    //            e.printStackTrace();
+    //        }
+    //
+    //    }
 }

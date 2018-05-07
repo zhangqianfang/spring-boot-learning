@@ -1,15 +1,18 @@
 package com.tmhp.platform.module.user.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tmhp.platform.core.annotation.Invisible;
+import com.tmhp.platform.module.role.domain.Role;
 
 /***
  * 
@@ -17,9 +20,7 @@ import com.tmhp.platform.core.annotation.Invisible;
  * @date 2018-5-2
  */
 @Table(name = "t_user")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = -3877728297412927533L;
+public class User {
 
     /** 用户ID */
     @Column(name = "user_id")
@@ -67,6 +68,11 @@ public class User implements Serializable {
     @Column(name = "last_login_time")
     private Date lastLoginTime;
 
+    /** 角色列表 */
+    @JsonIgnore
+    @Invisible
+    private List<Role> roleList;
+
     @JsonIgnore
     @Invisible
     private List<Integer> userIdList;
@@ -76,6 +82,17 @@ public class User implements Serializable {
 
     public User(Integer userId) {
         this.userId = userId;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    @Transient
+    public Set<String> getRolesName() {
+        List<Role> roles = this.getRoleList();
+        return roles.stream().map(role -> role.getRoleName()).collect(Collectors.toSet());
     }
 
     public Integer getUserId() {
@@ -196,6 +213,14 @@ public class User implements Serializable {
 
     public void setUserIdList(List<Integer> userIdList) {
         this.userIdList = userIdList;
+    }
+
+    public List<Role> getRoleList() {
+        return this.roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 
 }

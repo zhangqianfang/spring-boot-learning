@@ -1,4 +1,4 @@
-package com.tmhp.platform.web;
+package com.tmhp.platform.web.user;
 
 import java.util.List;
 

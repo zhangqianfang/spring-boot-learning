@@ -5,7 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Lang;
+import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -27,6 +31,7 @@ public interface UserMapper {
      * @return List<User>
      */
     @Select("SELECT * FROM t_user")
+    @Results({ @Result(property = "roleList", column = "USER_ID", many = @Many(select = "com.tmhp.platform.module.role.mapper.listByUserId")) })
     List<User> listAll();
 
     /**
@@ -44,6 +49,7 @@ public interface UserMapper {
      */
     @Select("SELECT USER_ID,USERNAME,PASSWORD FROM t_user (#{user})")
     @Lang(SimpleSelectLangDriver.class)
+    @Results({ @Result(property = "roleList", column = "USER_ID", many = @Many(select = "com.tmhp.platform.module.role.mapper.listByUserId")) })
     List<User> listByCondition(User user);
 
     /**
@@ -53,6 +59,7 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM t_user WHERE USER_ID IN (#{userIdList})")
     @Lang(SimpleSelectInLangDriver.class)
+    @Results({ @Result(property = "roleList", column = "USER_ID", many = @Many(select = "com.tmhp.platform.module.role.mapper.listByUserId")) })
     List<User> listByUserIds(@Param("userIdList") List<Integer> userIdList);
 
     /**
@@ -62,6 +69,7 @@ public interface UserMapper {
      */
     @Insert("INSERT INTO t_user (#{user})")
     @Lang(SimpleInsertLangDriver.class)
+    @Options(useGeneratedKeys = true, keyProperty = "userId")
     Integer insert(User user);
 
     /**
