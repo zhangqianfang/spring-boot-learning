@@ -24,10 +24,6 @@
 	</properties>
 
 	<dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -77,7 +73,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-        <!-- shiro整合cas单点,集成到spring boot  -->
+        <!-- shiro整合cas单点,集成到spring boot  
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
@@ -87,7 +83,7 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-cas</artifactId>
             <version>1.2.4</version>
-        </dependency>
+        </dependency>-->
         <!--分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
